@@ -1,0 +1,75 @@
+[project]
+name = "brats-unet"
+version = "0.1.0"
+description = "Segmentación de tumores cerebrales con U-Net y BraTS 2021"
+requires-python = ">=3.10"
+
+dependencies = [
+    # Imágenes médicas
+    "nibabel>=5.3",
+    "scipy>=1.13",
+
+    # Deep learning (CPU por defecto)
+    "torch>=2.3",
+    "torchvision>=0.18",
+
+    # Visión por computadora y datos
+    "numpy>=1.26",
+    "opencv-python>=4.10",
+    "Pillow>=10.4",
+    "pandas>=2.2",
+
+    # Visualización
+    "matplotlib>=3.9",
+    "plotly>=5.22",
+
+    # Utilidades
+    "tqdm>=4.66",
+    "kagglehub>=0.3",
+
+    # Jupyter
+    "jupyter>=1.1",
+    "ipykernel>=6.29",
+    "ipywidgets>=8.1",
+]
+
+# ── Dependencias opcionales ────────────────────────────────────────────────────
+[project.optional-dependencies]
+# Para GPU con CUDA 12.x:
+#   uv sync --extra cuda
+# Las fuentes apuntarán al índice de PyTorch CUDA (ver [tool.uv.sources] abajo)
+cuda = [
+    "torch>=2.3",
+    "torchvision>=0.18",
+]
+
+# ── Configuración de uv ────────────────────────────────────────────────────────
+[tool.uv]
+# Este proyecto es solo un entorno + notebook, no un paquete instalable.
+# Esto evita que uv intente "construir" el proyecto con hatchling.
+package = false
+
+# ── Índice de PyTorch con soporte CUDA 12.6 ──────────────────────────────────
+# Tu driver (591.86) soporta hasta CUDA 13.1, que es retrocompatible con cu126.
+# PyTorch no tiene builds oficiales para CUDA 13.x todavía, pero cu126 funciona
+# perfectamente con tu hardware.
+
+[[tool.uv.index]]
+name = "pytorch-cu126"
+url = "https://download.pytorch.org/whl/cu126"
+explicit = true
+
+[tool.uv.sources]
+torch = [
+    { index = "pytorch-cu126", extra = "cuda" },
+]
+torchvision = [
+    { index = "pytorch-cu126", extra = "cuda" },
+]
+
+# ── Grupos de dependencias de desarrollo ──────────────────────────────────────
+[dependency-groups]
+dev = [
+    "black>=24.0",
+    "isort>=5.13",
+]
