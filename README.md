@@ -138,16 +138,3 @@ NIfTI 3D (240×240×155)
 
 **Entrada**: 4 modalidades MRI — FLAIR, T1, T1ce, T2  
 **Salida**: máscara de segmentación — 0=fondo, 1=necrosis, 2=edema, 3=ET
-
----
-
-## Referencias
-
-- Ronneberger, O., Fischer, P., & Brox, T. (2015).
-  [U-Net: Convolutional Networks for Biomedical Image Segmentation](https://arxiv.org/abs/1505.04597). MICCAI.
-
-- Baid, U. et al. (2021).
-  [The RSNA-ASNR-MICCAI BraTS 2021 Benchmark](https://arxiv.org/abs/2107.02314).
-
-- Isensee, F. et al. (2021).
-  [nnU-Net: a self-configuring method for deep learning-based biomedical image segmentation](https://www.nature.com/articles/s41592-020-01008-z). *Nature Methods*.
